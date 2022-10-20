@@ -5,8 +5,107 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JS DOM</title>
+
+    <style>
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+      .hour {
+        color: crimson;
+      }
+      .min {
+        color: teal;
+      }
+
+      .sec {
+        color: cornflowerblue;
+      }
+
+      .button {
+        color: white;
+        padding: 2px 8px;
+        margin-top: 8px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .button--start {
+        background-color: rgb(3, 148, 80);
+        border: 1px solid rgb(3, 148, 80);
+      }
+      .button--stop {
+        background-color: rgb(177, 8, 8);
+        border: 1px solid rgb(177, 8, 8);
+      }
+    </style>
   </head>
   <body>
-    <script></script>
+    <h3>Coloured Clock &mdash; setInterval</h3>
+
+    <div id="clock">
+      <span class="hour">HH</span>:<span class="min">MM</span>:<span class="sec"
+        >SS</span
+      >
+    </div>
+
+    <script>
+      let timerID;
+
+      function update() {
+        let clock = document.querySelector('#clock');
+        let date = new Date();
+
+        let hours = date.getHours();
+        if (hours < 10) {
+          hours = '0' + hours;
+        }
+        clock.children[0].innerHTML = hours;
+
+        let minutes = date.getMinutes();
+        if (minutes < 10) {
+          minutes = '0' + minutes;
+        }
+        clock.children[1].innerHTML = minutes;
+
+        let seconds = date.getSeconds();
+        if (seconds < 10) {
+          seconds = '0' + seconds;
+        }
+        clock.children[2].innerHTML = seconds;
+      }
+
+      function clockStart() {
+        // Set a NEW INTERVAL only if the clock is stopped
+        // Otherwise we would rewrite the timerID reference to the running interval and wouldn't be able to stop the clock ever again!
+        if (!timerID) {
+          timerID = setInterval(update, 1000);
+        }
+        update(); // Start right now, don't wait 1 second till the first setInterval works
+      }
+
+      function clockStop() {
+        clearInterval(timerID);
+        timerID = null; // Clear timerID to indicate that the clock has been stopped, so that it is possible to start it again in clockStart()
+      }
+    </script>
+
+    <!-- click on this button calls clockStart() -->
+    <input
+      type="button"
+      class="button button--start"
+      onclick="clockStart()"
+      value="Start"
+    />
+
+    <!-- click on this button calls clockStop() -->
+    <input
+      type="button"
+      class="button button--stop"
+      onclick="clockStop()"
+      value="Stop"
+    />
   </body>
 </html>
