@@ -7,6 +7,54 @@
     <title>JS DOM</title>
   </head>
   <body>
-    <script></script>
+    <h3>Create Tree From Data</h3>
+    <div id="container"></div>
+    <script>
+      let data = {
+        Fish: {
+          trout: {},
+          salmon: {},
+        },
+
+        Tree: {
+          Huge: {
+            sequoia: {},
+            oak: {},
+          },
+          Flowering: {
+            'apple tree': {},
+            magnolia: {},
+          },
+        },
+      };
+
+      function createTree(container, obj) {
+        container.append(createTreeDom(obj));
+      }
+
+      function createTreeDom(obj) {
+        // If there's NO CHILDREN, the call returns undefined
+        // and the <ul> won't be created
+        if (!Object.keys(obj).length) return;
+
+        const ul = document.createElement('ul');
+
+        for (let key in obj) {
+          const li = document.createElement('li');
+          li.innerHTML = key;
+
+          const childrenUL = createTreeDom(obj[key]);
+          if (childrenUL) {
+            li.append(childrenUL);
+          }
+          ul.append(li);
+        }
+
+        return ul;
+      }
+
+      const container = document.querySelector('#container');
+      createTree(container, data);
+    </script>
   </body>
 </html>
