@@ -5,8 +5,59 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JS DOM</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <script></script>
+    <h3>Create a notification</h3>
+    <h4>Notification is on the top&dash;right corner</h4>
+    <p>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos fuga ratione
+      cum! Nesciunt sapiente culpa ipsam dolorem dolore impedit earum minima
+      modi, aut optio libero ab. Nisi rerum quod minus culpa nemo doloribus in
+      ex quibusdam iste sapiente! Exercitationem, veniam numquam quibusdam unde
+      impedit nihil consequatur nulla distinctio nemo nesciunt, sed dolor ipsam
+      architecto ducimus dolore voluptates tempore illum eum accusantium
+      laboriosam dolores facilis. Dolorum accusantium rem iste architecto
+      sapiente odit, cumque nesciunt suscipit temporibus incidunt tenetur itaque
+      consequuntur sint dolor, aliquid molestias ut magni ea porro. Placeat,
+      quos adipisci? Reprehenderit non nulla temporibus? Debitis exercitationem
+      eligendi expedita nam! Nesciunt eius, eligendi aliquam vel voluptatum
+      perspiciatis. Dolores, rerum aspernatur. Sunt magnam officia alias
+      repellat eaque sint corrupti cum impedit sequi ab cumque fuga sapiente
+      aspernatur ad vero ipsum perspiciatis nobis voluptas temporibus, amet nisi
+      neque. Non, voluptas suscipit eligendi eius assumenda mollitia adipisci
+      eaque expedita totam id, ex soluta! Est ea, illo molestiae, dignissimos
+      temporibus nemo sapiente assumenda libero iure voluptas nobis eveniet,
+      quod cumque excepturi.
+    </p>
+    <script>
+      function showNotification({ top = 0, right = 0, className, html }) {
+        let notification = document.createElement('div');
+        notification.className = 'notification';
+        if (className) {
+          notification.classList.add(className);
+        }
+
+        notification.style.top = top + 'px';
+        notification.style.right = right + 'px';
+
+        notification.innerHTML = html;
+
+        document.body.append(notification);
+
+        setTimeout(() => notification.remove(), 1500);
+      }
+
+      // Testing
+      let i = 1;
+      setInterval(() => {
+        showNotification({
+          top: 10,
+          right: 10,
+          html: 'Bonjour ' + i++,
+          className: 'welcome',
+        });
+      }, 2000);
+    </script>
   </body>
 </html>
