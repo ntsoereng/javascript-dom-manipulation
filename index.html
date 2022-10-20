@@ -7,6 +7,63 @@
     <title>JS DOM</title>
   </head>
   <body>
-    <script></script>
+    <h3>Show descendants in a tree</h3>
+    <ul>
+      <li>
+        Animals
+        <ul>
+          <li>
+            Mammals
+            <ul>
+              <li>Cows</li>
+              <li>Donkeys</li>
+              <li>Dogs</li>
+              <li>Tigers</li>
+            </ul>
+          </li>
+          <li>
+            Other
+            <ul>
+              <li>Snakes</li>
+              <li>Birds</li>
+              <li>Lizards</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        Fishes
+        <ul>
+          <li>
+            Aquarium
+            <ul>
+              <li>Guppy</li>
+              <li>Angelfish</li>
+            </ul>
+          </li>
+          <li>
+            Sea
+            <ul>
+              <li>Sea trout</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <script>
+      const listItems = document.querySelectorAll('li');
+
+      for (let listItem of listItems) {
+        // Get the count of all <li> below this <li>
+        const descendantCount = listItem.querySelectorAll('li').length;
+
+        if (!descendantCount) {
+          continue;
+        }
+
+        // Add directly to the text node (append to the text)
+        listItem.firstChild.data += '[' + descendantCount + ']';
+      }
+    </script>
   </body>
 </html>
