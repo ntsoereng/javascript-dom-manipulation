@@ -20,13 +20,29 @@
   <body>
     <h3>Place the ball in the field center</h3>
     <div id="field">
-      <img src="https://en.js.cx/clipart/ball.svg" id="ball" /> . . . . . . . .
+      <img
+        src="https://en.js.cx/clipart/ball.svg"
+        width="40"
+        height="40"
+        id="ball"
+      />
       . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
       . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
       . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
       . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-      . . . . . . . . . . . . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . . .
     </div>
-    <script></script>
+    <script>
+      const field = document.querySelector('#field');
+      const ball = document.querySelector('#ball');
+
+      const fieldCenterX = field.clientWidth / 2;
+      const fieldCenterY = field.clientHeight / 2;
+      console.log(field.clientWidth, field.clientHeight);
+      console.log({ fieldCenterX, fieldCenterY });
+
+      ball.style.left = Math.round(fieldCenterX - ball.offsetWidth / 2) + 'px';
+      ball.style.top = Math.round(fieldCenterY - ball.offsetHeight / 2) + 'px';
+    </script>
   </body>
 </html>
