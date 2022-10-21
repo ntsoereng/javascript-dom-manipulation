@@ -42,6 +42,13 @@
       const bottomRight = [coords.right, coords.bottom];
 
       console.log({ upperLeft, bottomRight });
+
+      // Left-upper inner corner
+      const upperLeftInner = [
+        coords.left + field.clientLeft,
+        coords.top + field.clientTop,
+      ];
+      console.log({ upperLeftInner });
     </script>
   </body>
 </html>
