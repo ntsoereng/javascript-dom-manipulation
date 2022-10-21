@@ -37,18 +37,25 @@
 
     <script>
       // Outer corner coordinates
-      let coords = field.getBoundingClientRect();
-      const upperLeft = [coords.left, coords.top];
-      const bottomRight = [coords.right, coords.bottom];
+      let coordinates = field.getBoundingClientRect();
+      const upperLeft = [coordinates.left, coordinates.top];
+      const bottomRight = [coordinates.right, coordinates.bottom];
 
       console.log({ upperLeft, bottomRight });
 
       // Left-upper inner corner
       const upperLeftInner = [
-        coords.left + field.clientLeft,
-        coords.top + field.clientTop,
+        coordinates.left + field.clientLeft,
+        coordinates.top + field.clientTop,
       ];
       console.log({ upperLeftInner });
+
+      // Right bottom corner
+      const bottomRightInner = [
+        coordinates.left + field.clientLeft + field.clientWidth,
+        coordinates.top + field.clientTop + field.clientHeight,
+      ];
+      console.log({ bottomRightInner });
     </script>
   </body>
 </html>
