@@ -5,8 +5,74 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JS DOM</title>
+    <style>
+      #example {
+        width: 300px;
+        height: 200px;
+        border: 25px solid #e8c48f;
+        padding: 20px;
+        overflow: auto;
+      }
+    </style>
   </head>
+
   <body>
-    <script></script>
+    <main id="main" style="position: relative">
+      <article>
+        <div id="example" style="position: absolute; left: 180px; top: 180px">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis
+          corrupti exercitationem nam. Error maiores minima voluptatibus dicta
+          eaque dolorem laboriosam saepe, adipisci placeat velit, odio iure
+          libero facere blanditiis fugiat quia? Placeat modi recusandae, fuga,
+          perspiciatis laborum dignissimos cumque reiciendis ex officia
+          blanditiis eum obcaecati! Lorem ipsum dolor sit, amet consectetur
+          adipisicing elit. Repellendus, laudantium, quaerat ipsa libero cum
+          quia deleniti et deserunt aliquam modi, illum distinctio officiis
+          blanditiis! Voluptas nisi iste dignissimos? Mollitia, itaque! Lorem
+          ipsum dolor sit amet consectetur adipisicing elit. Dolorum, ipsam.
+          Vel, aliquam ullam reiciendis dolor quis nam ea distinctio molestiae
+          magni obcaecati neque quae dolorem consequatur eaque corrupti quisquam
+          sint consequuntur soluta rerum vitae! Iure adipisci cupiditate
+          accusantium tenetur quia!
+        </div>
+      </article>
+    </main>
+    <script>
+      const example = document.querySelector('#example');
+
+      // Nearest positioned ancestor
+      console.log('offsetParent:', example.offsetParent.id);
+
+      // Coordinates relative to the upper-left edge of the offsetParent
+      console.log('offsetLeft:', example.offsetLeft);
+      console.log('offsetRight:', example.offsetTop);
+
+      // "Outer" width/height of the element INCLUDING BORDERS
+      console.log('offsetWidth:', example.offsetWidth);
+      console.log('offsetHeight:', example.offsetHeight);
+
+      // Distances from the upper-left outer corner to the upper-left inner (content + padding) content
+      // For LTR OSs, they're widths of top/left borders
+      console.log('clientTop:', example.clientTop);
+      console.log('clientLeft:', example.clientLeft);
+
+      // The width/height of the content including paddings, WITHOUT the scrollbar
+      console.log('clientWidth:', example.clientWidth);
+      console.log('clientHeight:', example.clientHeight);
+
+      // Width/height of the content, like clientWidth/clientHeight but also include scrolled-out, invisible part of the element
+      console.log('scrollWidth:', example.scrollWidth);
+      console.log('scrollHeight:', example.scrollHeight);
+
+      // example.style.height = `${example.scrollHeight}px`;
+
+      // Width/height of the SCROLLED-OUT upper part of the element, starting from its upper-left corner.
+      console.log('scrollTop:', example.scrollTop);
+      console.log('scrollLeft:', example.scrollLeft);
+
+      // scrollTop/scrollLeft can be modified
+      example.scrollTop += 50;
+      console.log('scrollTop:', example.scrollTop);
+    </script>
   </body>
 </html>
