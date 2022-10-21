@@ -35,6 +35,13 @@
     <div class="triangle-right" style="left: 190px; top: -40px">4</div>
     <div class="triangle-right" style="left: 200px; top: -42px">2</div>
 
-    <script></script>
+    <script>
+      // Outer corner coordinates
+      let coords = field.getBoundingClientRect();
+      const upperLeft = [coords.left, coords.top];
+      const bottomRight = [coords.right, coords.bottom];
+
+      console.log({ upperLeft, bottomRight });
+    </script>
   </body>
 </html>
