@@ -5,8 +5,64 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JS DOM</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+      }
+      .message {
+        position: absolute;
+        color: orangered;
+        transition: all 02s ease-in-out;
+      }
+    </style>
   </head>
   <body>
-    <script></script>
+    <h3>Coordinates</h3>
+    <button id="btn">Click this Button</button>
+
+    <script>
+      const button = document.querySelector('#btn');
+      // button.onclick = function () {
+      //   console.log(button.getBoundingClientRect());
+      // };
+
+      function getCoords(elem) {
+        let box = elem.getBoundingClientRect();
+
+        return {
+          top: box.top + window.pageYOffset,
+          right: box.right + window.pageXOffset,
+          bottom: box.bottom + window.pageYOffset,
+          left: box.left + window.pageXOffset,
+        };
+      }
+
+      function createMessageUnder(elem, html) {
+        // Create message element
+        const message = document.createElement('div');
+        message.className = 'message';
+
+        // assign coordinates
+        const coords = getCoords(elem);
+        message.style.left = coords.left + 'px';
+        message.style.top = coords.button + 'px';
+
+        message.innerHTML = html;
+
+        return message;
+      }
+
+      // Usage: add it for 5 seconds in the document
+      const message = createMessageUnder(
+        button,
+        '<strong>Hello, stranger!</strong>'
+      );
+      document.body.append(message);
+      setTimeout(() => message.remove(), 5000);
+    </script>
   </body>
 </html>
