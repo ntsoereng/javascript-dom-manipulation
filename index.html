@@ -7,6 +7,29 @@
     <title>JS DOM</title>
   </head>
   <body>
-    <script></script>
+    <h3>Hide on click</h3>
+
+    <input type="button" value="Click to hide paragraph" id="hider" />
+    <input type="button" value="Click to show paragraph" id="show" />
+
+    <div id="paragraph">
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Necessitatibus,
+      dicta corrupti cum hic, delectus minima asperiores exercitationem amet
+      distinctio, rerum recusandae repellendus. Quis?
+    </div>
+
+    <script>
+      const hider = document.querySelector('#hider');
+      const show = document.querySelector('#show');
+      const paragraph = document.querySelector('#paragraph');
+
+      hider.addEventListener('click', function () {
+        paragraph.style.display = 'none';
+      });
+
+      show.addEventListener('click', function () {
+        paragraph.style.removeProperty('display');
+      });
+    </script>
   </body>
 </html>
