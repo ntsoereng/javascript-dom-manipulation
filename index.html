@@ -5,8 +5,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JS DOM</title>
+    <style>
+      input[type='button'] {
+        cursor: pointer;
+      }
+    </style>
   </head>
   <body>
-    <script></script>
+    <h3>Browser Events</h3>
+
+    <!-- Handle Events using HTML ATTRIBUTES -->
+    <input
+      type="button"
+      value="Click here"
+      onclick="console.log('Button clicked!')"
+    />
+
+    <input type="button" value="Count Cars" onclick="countCars()" />
+
+    <input
+      type="button"
+      id="elem"
+      value="Click for DOM Handling"
+      onclick="console.log('Click handled from HTML Attribute')"
+    />
+
+    <script>
+      // Handle events using predefined function HTML Attribute
+      function countCars() {
+        for (let i = 0; i < 5; i++) {
+          console.log(`Car number ${i + 1}`);
+        }
+      }
+
+      // Handle Events using DOM PROPERTIES
+      const elem = document.querySelector('#elem');
+      elem.onclick = function () {
+        console.log(this.outerHTML);
+      };
+
+      document.addEventListener('DOMContentLoaded', function () {
+        alert('DOM Content loaded...');
+      });
+    </script>
   </body>
 </html>
