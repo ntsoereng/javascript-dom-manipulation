@@ -11,6 +11,10 @@
 
     <input type="button" value="Click here" id="btn" />
 
+    <button id="button-object">Handle event using object</button>
+
+    <button id="button-class">Handle event with custom class object</button>
+
     <script>
       const btn = document.getElementById('btn');
       btn.onclick = function (event) {
@@ -21,6 +25,38 @@
         );
         console.log(this);
       };
+
+      // Handle Event Using HANDLER OBJECT
+      const buttonObject = document.querySelector('#button-object');
+
+      const handlerObject = {
+        handleEvent(event) {
+          console.log(`${event.type} event at ${event.currentTarget}`);
+        },
+      };
+
+      buttonObject.addEventListener('click', handlerObject);
+
+      // Handle event using object of a CUSTOM CLASS
+      const buttonClass = document.querySelector('#button-class');
+
+      class HandlerClass {
+        handleEvent(event) {
+          switch (event.type) {
+            case 'mousedown':
+              buttonClass.innerHTML = 'Mouse button pressed';
+              break;
+            case 'mouseup':
+              buttonClass.innerHTML += '...and released!';
+              break;
+          }
+        }
+      }
+
+      let handlerClassObject = new HandlerClass();
+
+      buttonClass.addEventListener('mousedown', handlerClassObject);
+      buttonClass.addEventListener('mouseup', handlerClassObject);
     </script>
   </body>
 </html>
