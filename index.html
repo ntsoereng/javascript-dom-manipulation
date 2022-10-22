@@ -5,8 +5,71 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JS DOM</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <script></script>
+    <h2>Mission Statements</h2>
+    <div>
+      <div class="pane">
+        <h3 class="pane__title">Tesla</h3>
+        <p class="pane__description">
+          Tesla's mission is to accelerate the world's transition to sustainable
+          energy through increasingly affordable electric vehicles in addition
+          to renewable energy generation and storage. Tesla is accelerating the
+          world's transition to sustainable energy.
+        </p>
+      </div>
+
+      <div class="pane">
+        <h3 class="pane__title">BMW</h3>
+        <p class="pane__description">
+          BMW's mission statement is “to become the world's leading provider of
+          premium products and premium services for individual mobility.” The
+          statement shows that BMW has come of age and no longer settles on
+          normal or what can be defined as satisfactory products.
+        </p>
+      </div>
+
+      <div class="pane">
+        <h3 class="pane__title">Ford</h3>
+        <p class="pane__description">
+          To help build a better world, where every person is free to move and
+          pursue their dreams. We believe in the power of creating a world with
+          fewer obstacles and limits, where people have the freedom to build a
+          better life and pursue their dreams.
+        </p>
+      </div>
+
+      <div class="pane">
+        <h3 class="pane__title">Renault</h3>
+        <p class="pane__description">
+          From our shared mission: providing sustainable mobility to all around
+          the world. Take a ride into the heart of Renault Group.
+        </p>
+      </div>
+
+      <div class="pane">
+        <h3 class="pane__title">Mercedes Benz</h3>
+        <p class="pane__description">
+          We will continuously strive to inspire consumer confidence by
+          supplying a transparent atmosphere and offering a premium automobile
+          product with individualized customer care.
+        </p>
+      </div>
+    </div>
+
+    <script>
+      const panes = document.querySelectorAll('.pane');
+
+      for (const pane of panes) {
+        pane.insertAdjacentHTML(
+          'afterbegin',
+          '<button class="button--close">[x]</button>'
+        );
+        pane.firstChild.addEventListener('click', function () {
+          pane.remove();
+        });
+      }
+    </script>
   </body>
 </html>
