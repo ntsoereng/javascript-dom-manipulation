@@ -5,8 +5,55 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JS DOM</title>
+    <style>
+      .menu .title {
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: 600;
+      }
+      .menu ul {
+        margin: 0;
+        list-style: none;
+        padding-left: 20px;
+        display: none;
+      }
+      .menu li {
+        margin: 5px;
+      }
+      .menu .title::before {
+        content: '>';
+        font-size: 80%;
+        color: cornflowerblue;
+        font-weight: 900;
+      }
+      .menu.open .title::before {
+        content: 'v';
+      }
+      .menu.open ul {
+        display: block;
+      }
+    </style>
   </head>
   <body>
-    <script></script>
+    <h3>Sliding Menu</h3>
+    <div class="menu" id="menu">
+      <span class="title" id="title"> Click to see awesome cars </span>
+      <ul>
+        <li>Tesla</li>
+        <li>BMW</li>
+        <li>Mercedes Benz</li>
+        <li>Ford</li>
+        <li>Renault</li>
+      </ul>
+    </div>
+
+    <script>
+      const clickOn = document.querySelector('#title');
+      const menu = document.querySelector('#menu');
+
+      clickOn.addEventListener('click', function () {
+        menu.classList.toggle('open');
+      });
+    </script>
   </body>
 </html>
