@@ -42,14 +42,18 @@
 
       class HandlerClass {
         handleEvent(event) {
-          switch (event.type) {
-            case 'mousedown':
-              buttonClass.innerHTML = 'Mouse button pressed';
-              break;
-            case 'mouseup':
-              buttonClass.innerHTML += '...and released!';
-              break;
-          }
+          // mousedown -> onMousedown
+          const method =
+            'on' + event.type[0].toUpperCase() + event.type.slice(1);
+          this[method](event);
+        }
+
+        onMousedown() {
+          buttonClass.innerHTML = 'Mouse button pressed';
+        }
+
+        onMouseup() {
+          buttonClass.innerHTML += '...and released!';
         }
       }
 
