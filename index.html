@@ -5,8 +5,86 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JS DOM</title>
+    <style>
+      #field {
+        width: 200px;
+        height: 150px;
+        border: 10px solid black;
+        background-color: lime;
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+      }
+      #ball {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 40px;
+        width: 40px;
+        transition: all 1s ease-in-out;
+      }
+    </style>
   </head>
-  <body>
-    <script></script>
+  <body style="height: 2000px">
+    <h3>Move ball across the field</h3>
+    <p>Click anywhere on the field to move it there</p>
+
+    <div id="field">
+      <img src="https://en.js.cx/clipart/ball.svg" id="ball" /> . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . .
+    </div>
+
+    <script>
+      const ball = document.querySelector('#ball');
+      const field = document.querySelector('#field');
+
+      field.addEventListener('click', function (event) {
+        // Get window-relative field coordinates
+        const fieldCoords = this.getBoundingClientRect();
+
+        // The ball has position:absolute, field has position:relative
+        // so the ball coordinates are relative to the field inner left-upper corner
+        const ballCoords = {
+          top:
+            event.clientY -
+            fieldCoords.top -
+            field.clientTop -
+            ball.clientHeight / 2,
+          left:
+            event.clientX -
+            fieldCoords.left -
+            field.clientLeft -
+            ball.clientWidth / 2,
+        };
+
+        // Prevent ball from crossing top field boudary
+        if (ballCoords.top < 0) {
+          ballCoords.top = 0;
+        }
+
+        // Prevent ball from crossing left field boundary
+        if (ballCoords.left < 0) {
+          ballCoords.left = 0;
+        }
+
+        // Prevent ball from crossing the right field boundary
+        if (ballCoords.left + ball.clientWidth > field.clientWidth) {
+          ballCoords.left = field.clientWidth - ball.clientWidth;
+        }
+
+        // Prevent ball from crossing bottom field boundary
+        if (ballCoords.top + ball.clientHeight > field.clientHeight) {
+          ballCoords.top = field.clientHeight - ball.clientHeight;
+        }
+
+        ball.style.left = ballCoords.left + 'px';
+        ball.style.top = ballCoords.top + 'px';
+      });
+    </script>
   </body>
 </html>
