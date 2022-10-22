@@ -7,6 +7,20 @@
     <title>JS DOM</title>
   </head>
   <body>
-    <script></script>
+    <h3>Event Object</h3>
+
+    <input type="button" value="Click here" id="btn" />
+
+    <script>
+      const btn = document.getElementById('btn');
+      btn.onclick = function (event) {
+        // Show event type, element, and coordinates of the click
+        console.log(`${event.type} event at ${event.currentTarget}`);
+        console.log(
+          `Coordinates of the event: (${event.clientX}, ${event.clientY})`
+        );
+        console.log(this);
+      };
+    </script>
   </body>
 </html>
