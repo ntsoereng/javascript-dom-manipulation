@@ -9,7 +9,7 @@
   </head>
   <body>
     <h2>Mission Statements</h2>
-    <div>
+    <div id="container">
       <div class="pane">
         <h3 class="pane__title">Tesla</h3>
         <p class="pane__description">
@@ -18,6 +18,7 @@
           to renewable energy generation and storage. Tesla is accelerating the
           world's transition to sustainable energy.
         </p>
+        <button class="button--close">[x]</button>
       </div>
 
       <div class="pane">
@@ -28,6 +29,7 @@
           statement shows that BMW has come of age and no longer settles on
           normal or what can be defined as satisfactory products.
         </p>
+        <button class="button--close">[x]</button>
       </div>
 
       <div class="pane">
@@ -38,6 +40,7 @@
           fewer obstacles and limits, where people have the freedom to build a
           better life and pursue their dreams.
         </p>
+        <button class="button--close">[x]</button>
       </div>
 
       <div class="pane">
@@ -46,6 +49,7 @@
           From our shared mission: providing sustainable mobility to all around
           the world. Take a ride into the heart of Renault Group.
         </p>
+        <button class="button--close">[x]</button>
       </div>
 
       <div class="pane">
@@ -55,21 +59,21 @@
           supplying a transparent atmosphere and offering a premium automobile
           product with individualized customer care.
         </p>
+        <button class="button--close">[x]</button>
       </div>
     </div>
 
     <script>
-      const panes = document.querySelectorAll('.pane');
+      const container = document.querySelector('#container');
 
-      for (const pane of panes) {
-        pane.insertAdjacentHTML(
-          'afterbegin',
-          '<button class="button--close">[x]</button>'
-        );
-        pane.firstChild.addEventListener('click', function () {
-          pane.remove();
-        });
-      }
+      container.addEventListener('click', function (event) {
+        if (event.target.className != 'button--close') {
+          return;
+        }
+
+        const pane = event.target.closest('.pane');
+        pane.remove();
+      });
     </script>
   </body>
 </html>
