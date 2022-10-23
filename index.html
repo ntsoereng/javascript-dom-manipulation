@@ -7,6 +7,40 @@
     <title>JS DOM</title>
   </head>
   <body>
-    <script></script>
+    <h2>Elegant event delegation</h2>
+
+    <div id="menu">
+      <button data-action="save">Save</button>
+      <button data-action="load">Load</button>
+      <button data-action="search">Search</button>
+    </div>
+
+    <script>
+      class Menu {
+        constructor(elem) {
+          this._elem = elem;
+          elem.onclick = this.onClick.bind(this);
+        }
+
+        save() {
+          alert('Saving...');
+        }
+        load() {
+          alert('Loading...');
+        }
+        search() {
+          alert('Searching...');
+        }
+
+        onClick(event) {
+          const action = event.target.dataset.action;
+          if (action) {
+            this[action]();
+          }
+        }
+      }
+
+      new Menu(menu);
+    </script>
   </body>
 </html>
