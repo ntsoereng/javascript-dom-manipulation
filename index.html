@@ -9,16 +9,23 @@
   <body>
     <h2>Behaviour Pattern</h2>
 
-    <label for="input1">Counter:</label>
-    <input id="input1" type="button" value="1" data-counter /><br />
-    <label for="input2">One more counter:</label>
-    <input id="input2" type="button" value="2" data-counter />
+    <button data-toggle-id="subscribe-mail">Show subscription form</button>
+
+    <form id="subscribe-mail" hidden>
+      <label for="email">Your email</label>
+      <input type="email" name="email" id="email" />
+      <button type="submit">Subscribe</button>
+    </form>
 
     <script>
       document.addEventListener('click', function (event) {
-        if (event.target.dataset.counter != undefined) {
-          event.target.value++;
+        const id = event.target.dataset.toggleId;
+        if (!id) {
+          return;
         }
+        const elem = document.getElementById(id);
+
+        elem.hidden = !elem.hidden;
       });
     </script>
   </body>
