@@ -6,7 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JS DOM</title>
   </head>
-  <body>
-    <script></script>
+  <body onclick="alert('Bubbling doesn\'t reach here')">
+    <button id="button">Click</button>
+
+    <script>
+      button.addEventListener('click', function () {
+        alert("Didn't stop propagation...");
+      });
+
+      button.addEventListener('click', function () {
+        event.stopImmediatePropagation();
+        alert('Stopped Propagation');
+      });
+    </script>
   </body>
 </html>
