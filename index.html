@@ -5,8 +5,110 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JS DOM</title>
+    <style>
+      table {
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        border: 1px solid #333;
+        padding: 4px;
+      }
+      th {
+        cursor: pointer;
+        transition: all 0.1s;
+      }
+      th:hover {
+        background-color: cornflowerblue;
+        color: aliceblue;
+      }
+    </style>
   </head>
   <body>
-    <script></script>
+    <h2>Sortable Table &mdash; My Favourite Cars</h2>
+
+    <table id="grid">
+      <thead>
+        <tr>
+          <th data-type="number">Year</th>
+          <th data-type="string">Brand</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2022</td>
+          <td>Tesla Model S</td>
+        </tr>
+        <tr>
+          <td>2020</td>
+          <td>BMW X6</td>
+        </tr>
+        <tr>
+          <td>2021</td>
+          <td>Mercedes Benz AMG</td>
+        </tr>
+        <tr>
+          <td>2021</td>
+          <td>Renault Clio</td>
+        </tr>
+        <tr>
+          <td>2019</td>
+          <td>Ford Everest</td>
+        </tr>
+        <tr>
+          <td>2018</td>
+          <td>Toyota Fortuner</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <script>
+      const grid = document.querySelector('#grid');
+
+      grid.addEventListener('click', function (event) {
+        if (event.target.tagName != 'TH') {
+          return;
+        }
+
+        const th = event.target;
+
+        // if <th> then sort
+        // cellIndex is the number of th:
+        // - 0 for the first column
+        // - 1 for the second column, etc
+        sortGrid(th.cellIndex, th.dataset.type);
+      });
+
+      function sortGrid(colNum, type) {
+        const tbody = grid.querySelector('tbody');
+        const rowsArray = Array.from(tbody.rows);
+
+        // compare (a, b) compares two rows, needed for sorting
+        let compare;
+
+        switch (type) {
+          case 'number':
+            compare = function (rowA, rowB) {
+              return (
+                rowA.cells[colNum].innerHTML - rowB.cells[colNum].innerHTML
+              );
+            };
+            break;
+
+          case 'string':
+            compare = function (rowA, rowB) {
+              return rowA.cells[colNum].innerHTML > rowB.cells[colNum].innerHTML
+                ? 1
+                : -1;
+            };
+            break;
+        }
+
+        // Sort
+        rowsArray.sort(compare);
+
+        tbody.append(...rowsArray);
+      }
+    </script>
   </body>
 </html>
