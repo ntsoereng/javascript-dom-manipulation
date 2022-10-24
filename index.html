@@ -5,8 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JS DOM</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <script></script>
+    <h2>Browser Default Actions</h2>
+
+    <ul id="menu" class="menu">
+      <li><a href="/html">HTML</a></li>
+      <li><a href="/javascript">JavaScript</a></li>
+      <li><a href="/css">CSS</a></li>
+    </ul>
+
+    <input type="text" value="Focus works" onclick="this.value=''" />
+    <input
+      type="text"
+      value="Focus no funcciona"
+      onmousedown="return false"
+      onfocus="this.value=''"
+    />
+    <script src="main.js"></script>
   </body>
 </html>
