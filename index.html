@@ -5,24 +5,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JS DOM</title>
-    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h2>Browser Default Actions</h2>
+    <h2>event.defaultPrevented</h2>
+    <!-- 
+    <button>Right click shows browser context menu</button>
 
-    <ul id="menu" class="menu">
-      <li><a href="/html">HTML</a></li>
-      <li><a href="/javascript">JavaScript</a></li>
-      <li><a href="/css">CSS</a></li>
-    </ul>
+    <button oncontextmenu="alert('Draw our menu'); return false">
+      Right click shows our own context menu
+    </button> -->
+    <div>
+      <p>Right click here for the document context menu</p>
+      <button id="btn">Right click here for button context menu</button>
+    </div>
 
-    <input type="text" value="Focus works" onclick="this.value=''" />
-    <input
-      type="text"
-      value="Focus no funcciona"
-      onmousedown="return false"
-      onfocus="this.value=''"
-    />
-    <script src="main.js"></script>
+    <script>
+      const btn = document.getElementById('btn');
+      btn.oncontextmenu = function (event) {
+        event.preventDefault();
+        // event.stopPropagation();
+        alert('Button context menu');
+      };
+
+      document.oncontextmenu = function (event) {
+        if (event.defaultPrevented) {
+          return;
+        }
+
+        event.preventDefault();
+        alert('Document context menu');
+      };
+    </script>
   </body>
 </html>
