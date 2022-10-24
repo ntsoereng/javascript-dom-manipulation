@@ -1,0 +1,36 @@
+body {
+  margin: 0;
+  padding: 0;
+  font: 75%/120% sans-serif;
+}
+
+#largeImg {
+  border: 1px solid #ccc;
+  width: 550px;
+  height: 400px;
+  padding: 5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+#thumbs {
+  margin: 0;
+  padding: 0;
+}
+
+#thumbs li {
+  list-style: none;
+}
+
+#thumbs a {
+  border: 1px solid #ccc;
+  width: 100px;
+  height: 100px;
+  padding: 3px;
+  margin: 2px;
+  float: left;
+  transition: all 0.2s;
+}
+
+#thumbs a:hover {
+  border-color: #ff9900;
+}
