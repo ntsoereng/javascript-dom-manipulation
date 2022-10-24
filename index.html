@@ -10,13 +10,13 @@
     <h2 id="heading">Custom Events</h2>
 
     <script>
-      document.addEventListener('hello', function (event) {
-        alert('Hello from ' + event.target.tagName);
+      const event = new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+        clientX: 100,
+        clientY: 100,
       });
-
-      const heading = document.querySelector('#heading');
-      const event = new Event('hello', { bubbles: true });
-      heading.dispatchEvent(event);
+      alert(event.clientX);
     </script>
   </body>
 </html>
