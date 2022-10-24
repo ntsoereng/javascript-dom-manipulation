@@ -7,14 +7,16 @@
     <title>JS DOM</title>
   </head>
   <body>
-    <h2>Custom Events</h2>
-
-    <button id="btn" onclick="alert('Clicked the button')">Autoclick</button>
+    <h2 id="heading">Custom Events</h2>
 
     <script>
-      const btn = document.querySelector('#btn');
-      const event = new Event('click');
-      btn.dispatchEvent(event);
+      document.addEventListener('hello', function (event) {
+        alert('Hello from ' + event.target.tagName);
+      });
+
+      const heading = document.querySelector('#heading');
+      const event = new Event('hello', { bubbles: true });
+      heading.dispatchEvent(event);
     </script>
   </body>
 </html>
