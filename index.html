@@ -7,6 +7,14 @@
     <title>JS DOM</title>
   </head>
   <body>
-    <script></script>
+    <h2>Custom Events</h2>
+
+    <button id="btn" onclick="alert('Clicked the button')">Autoclick</button>
+
+    <script>
+      const btn = document.querySelector('#btn');
+      const event = new Event('click');
+      btn.dispatchEvent(event);
+    </script>
   </body>
 </html>
