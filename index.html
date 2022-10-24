@@ -5,8 +5,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JS DOM</title>
+
+    <style>
+      #contents {
+        padding: 5px;
+        border: 1px solid cornflowerblue;
+      }
+    </style>
   </head>
   <body>
-    <script></script>
+    <h2>Catch links in an element</h2>
+
+    <fieldset id="contents">
+      <legend>#contents</legend>
+      <p>
+        Wanna go to <a href="https://wikipedia.org">Wikipedia</a> or visit
+        <a href="https://w3.org"><i>W3.org</i></a> and learn more about modern
+        standards?
+      </p>
+    </fieldset>
+
+    <script>
+      const contents = document.querySelector('#contents');
+      contents.onclick = function (event) {
+        function handleLink(href) {
+          const isLeaving = confirm(`Leave for ${href}`);
+          if (!isLeaving) {
+            return false;
+          }
+        }
+
+        const target = event.target.closest('a');
+        if (target && contents.contains(target)) {
+          return handleLink(target.getAttribute('href'));
+        }
+      };
+    </script>
   </body>
 </html>
