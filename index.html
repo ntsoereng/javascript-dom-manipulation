@@ -9,19 +9,25 @@
   <body>
     <h2 id="heading">Custom Events</h2>
 
+    <button id="menu">Menu (click here)</button>
+
     <script>
-      const heading = document.querySelector('#heading');
+      const menu = document.querySelector('#menu');
+      menu.onclick = function () {
+        alert('First alert...');
 
-      heading.addEventListener('hello', function (event) {
-        alert(event.detail.name);
-        alert(event.detail.age);
+        menu.dispatchEvent(
+          new CustomEvent('menu-open', {
+            bubbles: true,
+          })
+        );
+
+        alert('Second alert...');
+      };
+
+      document.addEventListener('menu-open', () => {
+        alert('Nested event');
       });
-
-      heading.dispatchEvent(
-        new CustomEvent('hello', {
-          detail: { name: 'Cletus', age: 25 },
-        })
-      );
     </script>
   </body>
 </html>
