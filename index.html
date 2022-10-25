@@ -5,31 +5,58 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JS DOM</title>
+
+    <style>
+      .selected {
+        background-color: cornflowerblue;
+      }
+      li {
+        cursor: pointer;
+      }
+    </style>
   </head>
   <body>
-    <h2>Mouse Eevnts</h2>
+    <h2>Selectable List</h2>
 
-    <button id="button">Alt+Shift+Click on me!</button>
+    <p>Click on a list item to select it.</p>
 
-    <input type="button" id="coordinates" value="Move mouse over me" />
-
-    <div oncopy="alert('Copying is forbidden!!!'); return false">
-      Dear user, Copying of material from this site is forbidden. If you know
-      HTML/JS, you can still get everything from the page source though.
-    </div>
+    <ul id="list">
+      <li>Tesla</li>
+      <li>Ford</li>
+      <li>BMW</li>
+      <li>Mercedes Benz</li>
+      <li>Renault</li>
+      <li>Audi</li>
+    </ul>
 
     <script>
-      const button = document.querySelector('#button');
-      button.addEventListener('click', function (event) {
-        if (event.altKey && event.shiftKey) {
-          alert('Clicked with Alt+Shift');
+      const list = document.querySelector('#list');
+      list.addEventListener('click', function (event) {
+        if (event.target.tagName != 'LI') {
+          return;
+        }
+
+        if (event.ctrlKey || event.metaKey) {
+          toggleSelect(event.target);
+        } else {
+          singleSelect(event.target);
         }
       });
 
-      const btnCoords = document.querySelector('#coordinates');
-      btnCoords.addEventListener('mousemove', function (event) {
-        this.value = `${event.clientX}:${event.clientY}`;
-      });
+      // Prevent unnecessary selection of list elements on clicks
+      list.onmousedown = function () {
+        return false;
+      };
+
+      function toggleSelect(li) {
+        li.classList.toggle('selected');
+      }
+
+      function singleSelect(li) {
+        const selected = list.querySelectorAll('.selected');
+        Array.from(selected).forEach(elem => elem.classList.remove('selected'));
+        li.classList.add('selected');
+      }
     </script>
   </body>
 </html>
