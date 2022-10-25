@@ -7,6 +7,17 @@
     <title>JS DOM</title>
   </head>
   <body>
-    <script></script>
+    <h2>Mouse Eevnts</h2>
+
+    <button id="button">Alt+Shift+Click on me!</button>
+
+    <script>
+      const button = document.querySelector('#button');
+      button.addEventListener('click', function (event) {
+        if (event.altKey && event.shiftKey) {
+          alert('Clicked with Alt+Shift');
+        }
+      });
+    </script>
   </body>
 </html>
