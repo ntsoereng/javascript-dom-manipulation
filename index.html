@@ -7,21 +7,35 @@
     <title>JS DOM</title>
   </head>
   <body>
-    <h2 id="heading">Custom Events</h2>
+    <h2 id="heading">Prevent Default Action on Custom Events</h2>
+
+    <pre id="rabbit">
+      |\   /|
+       \|_|/
+       /. .\
+      =\_Y_/=
+       {>o<}
+    </pre>
+
+    <button onclick="hide()">Hide()</button>
 
     <script>
-      const heading = document.querySelector('#heading');
+      const rabbit = document.querySelector('#rabbit');
 
-      heading.addEventListener('hello', function (event) {
-        alert(event.detail.name);
-        alert(event.detail.age);
+      function hide() {
+        const event = new CustomEvent('hide', { cancelable: true });
+        if (!rabbit.dispatchEvent(event)) {
+          alert('The action was prevented by a handler');
+        } else {
+          rabbit.hidden = true;
+        }
+      }
+
+      rabbit.addEventListener('hide', function (event) {
+        if (confirm('Call preventDefault?')) {
+          event.preventDefault();
+        }
       });
-
-      heading.dispatchEvent(
-        new CustomEvent('hello', {
-          detail: { name: 'Cletus', age: 25 },
-        })
-      );
     </script>
   </body>
 </html>
