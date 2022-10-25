@@ -16,11 +16,13 @@
       menu.onclick = function () {
         alert('First alert...');
 
-        menu.dispatchEvent(
-          new CustomEvent('menu-open', {
-            bubbles: true,
-          })
-        );
+        setTimeout(() => {
+          menu.dispatchEvent(
+            new CustomEvent('menu-open', {
+              bubbles: true,
+            })
+          );
+        });
 
         alert('Second alert...');
       };
