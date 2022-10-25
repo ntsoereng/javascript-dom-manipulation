@@ -10,13 +10,18 @@
     <h2 id="heading">Custom Events</h2>
 
     <script>
-      const event = new MouseEvent('click', {
-        bubbles: true,
-        cancelable: true,
-        clientX: 100,
-        clientY: 100,
+      const heading = document.querySelector('#heading');
+
+      heading.addEventListener('hello', function (event) {
+        alert(event.detail.name);
+        alert(event.detail.age);
       });
-      alert(event.clientX);
+
+      heading.dispatchEvent(
+        new CustomEvent('hello', {
+          detail: { name: 'Cletus', age: 25 },
+        })
+      );
     </script>
   </body>
 </html>
