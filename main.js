@@ -1,15 +1,15 @@
 const thumb = document.querySelector('.slider__thumb');
 const slider = document.querySelector('#slider');
 
-thumb.onmousedown = function (event) {
+thumb.onpointerdown = function (event) {
   // Prevent default browser action: selection start
   event.preventDefault();
 
   const shiftX = event.clientX - thumb.getBoundingClientRect().left;
   // shiftY not needed, thumb only moves horizontally
 
-  document.addEventListener('mousemove', onMouseMove);
-  document.addEventListener('mouseup', onMouseUp);
+  document.addEventListener('pointermove', onMouseMove);
+  document.addEventListener('pointerup', onMouseUp);
 
   function onMouseMove(event) {
     let newLeft = event.clientX - shiftX - slider.getBoundingClientRect().left;
@@ -28,8 +28,8 @@ thumb.onmousedown = function (event) {
   }
 
   function onMouseUp() {
-    document.removeEventListener('mousemove', onMouseUp);
-    document.removeEventListener('mousemove', onMouseMove);
+    document.removeEventListener('pointermove', onMouseUp);
+    document.removeEventListener('pointermove', onMouseMove);
   }
 };
 
