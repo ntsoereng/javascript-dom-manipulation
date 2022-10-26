@@ -1,5 +1,9 @@
 const ball = document.querySelector('#ball');
 
+ball.ondragstart = function () {
+  return false;
+};
+
 ball.onmousedown = function (event) {
   // (1) PREPARE to move: make absolute and on top by z-index
   ball.style.position = 'absolute';
