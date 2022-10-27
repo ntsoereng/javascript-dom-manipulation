@@ -1,38 +1,72 @@
 const thumb = document.querySelector('.slider__thumb');
 const slider = document.querySelector('#slider');
+let shiftX;
 
-thumb.onpointerdown = function (event) {
-  // Prevent default browser action: selection start
+function onThumbDown(event) {
+  // Prevent browser default selection start
   event.preventDefault();
 
-  const shiftX = event.clientX - thumb.getBoundingClientRect().left;
-  // shiftY not needed, thumb only moves horizontally
+  shiftX = event.clientX - thumb.getBoundingClientRect().left;
 
-  document.addEventListener('pointermove', onMouseMove);
-  document.addEventListener('pointerup', onMouseUp);
+  thumb.setPointerCapture(event.pointerId);
 
-  function onMouseMove(event) {
-    let newLeft = event.clientX - shiftX - slider.getBoundingClientRect().left;
+  thumb.onpointermove = onThumbMove;
 
-    // The pointer is out of slider --> lock thumb within the boundaries
-    if (newLeft < 0) {
-      newLeft = 0;
-    }
+  thumb.onpointerup = event => {
+    thumb.onpointermove = null;
+    thumb.onpointerup = null;
+  };
+}
 
-    let rightEdge = slider.offsetWidth - thumb.offsetWidth;
-    if (newLeft > rightEdge) {
-      newLeft = rightEdge;
-    }
-
-    thumb.style.left = `${newLeft}px`;
+function onThumbMove(event) {
+  let newLeft = event.clientX - shiftX - slider.getBoundingClientRect().left;
+  if (newLeft < 0) {
+    newLeft = 0;
   }
 
-  function onMouseUp() {
-    document.removeEventListener('pointermove', onMouseUp);
-    document.removeEventListener('pointermove', onMouseMove);
+  let rightEdge = slider.offsetWidth - thumb.offsetWidth;
+  if (newLeft > rightEdge) {
+    newLeft = rightEdge;
   }
-};
 
-thumb.ondragstart = function () {
-  return false;
-};
+  thumb.style.left = `${newLeft}px`;
+}
+
+thumb.onpointerdown = onThumbDown;
+thumb.ondragstart = () => false;
+
+// thumb.onpointerdown = function (event) {
+//   // Prevent default browser action: selection start
+//   event.preventDefault();
+
+//   const shiftX = event.clientX - thumb.getBoundingClientRect().left;
+//   // shiftY not needed, thumb only moves horizontally
+
+//   document.addEventListener('pointermove', onMouseMove);
+//   document.addEventListener('pointerup', onMouseUp);
+
+//   function onMouseMove(event) {
+//     let newLeft = event.clientX - shiftX - slider.getBoundingClientRect().left;
+
+//     // The pointer is out of slider --> lock thumb within the boundaries
+//     if (newLeft < 0) {
+//       newLeft = 0;
+//     }
+
+//     let rightEdge = slider.offsetWidth - thumb.offsetWidth;
+//     if (newLeft > rightEdge) {
+//       newLeft = rightEdge;
+//     }
+
+//     thumb.style.left = `${newLeft}px`;
+//   }
+
+//   function onMouseUp() {
+//     document.removeEventListener('pointermove', onMouseUp);
+//     document.removeEventListener('pointermove', onMouseMove);
+//   }
+// };
+
+// thumb.ondragstart = function () {
+//   return false;
+// };
