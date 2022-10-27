@@ -7,6 +7,14 @@
     <title>JS DOM</title>
   </head>
   <body>
-    <script></script>
+    <h2>Keyboard: keydown and keyup</h2>
+
+    <script>
+      document.addEventListener('keydown', function (event) {
+        if (event.code === 'KeyZ' && (event.ctrlKey || event.metaKey)) {
+          alert('Undo');
+        }
+      });
+    </script>
   </body>
 </html>
