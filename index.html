@@ -9,12 +9,27 @@
   <body>
     <h2>Keyboard: keydown and keyup</h2>
 
+    <input type="tel" id="phonenumber" placeholder="Enter your phone number" />
+
     <script>
-      document.addEventListener('keydown', function (event) {
-        if (event.code === 'KeyZ' && (event.ctrlKey || event.metaKey)) {
-          alert('Undo');
-        }
-      });
+      const phonenumber = document.querySelector('#phonenumber');
+      phonenumber.onkeydown = checkPhoneKey;
+
+      function checkPhoneKey(event) {
+        return (
+          (event.key >= '0' && event.key <= '9') ||
+          [
+            '+',
+            '(',
+            ')',
+            '-',
+            'ArrowLeft',
+            'ArrowRight',
+            'Delete',
+            'Backspace',
+          ].includes(event.key)
+        );
+      }
     </script>
   </body>
 </html>
