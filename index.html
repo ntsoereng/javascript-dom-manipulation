@@ -5,8 +5,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JS DOM</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        /* box-sizing: border-box; */
+      }
+      body {
+        height: 2000px;
+        border: 3px solid red;
+      }
+      #show-scroll {
+        position: fixed;
+        top: 50%;
+        right: 0;
+        border: 1px solid rgb(131, 165, 230);
+        padding: 10px;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+        background-color: cornflowerblue;
+        color: aliceblue;
+        font-weight: 900;
+        border-radius: 2px;
+      }
+    </style>
   </head>
   <body>
-    <script></script>
+    <!-- <h2>Scrolling</h2> -->
+    <div id="show-scroll"></div>
+    <script>
+      window.addEventListener('scroll', function () {
+        document.getElementById('show-scroll').innerHTML =
+          this.pageYOffset + 'px';
+      });
+
+      alert(document.documentElement.offsetHeight);
+      alert(document.body.offsetHeight);
+    </script>
   </body>
 </html>
