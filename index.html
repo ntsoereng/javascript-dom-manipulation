@@ -5,8 +5,56 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JS DOM</title>
+    <style>
+      #ball {
+        touch-action: none;
+      }
+    </style>
   </head>
-  <body>
-    <script></script>
+  <body style="height: 200px">
+    <h2>Pointer Cancel</h2>
+
+    <img
+      src="https://js.cx/clipart/ball.svg"
+      style="cursor: pointer"
+      width="40"
+      height="40"
+      id="ball"
+    />
+
+    <textarea
+      name="text"
+      id="text"
+      style="display: block; width: 300px; height: 100px"
+    ></textarea>
+
+    <script>
+      const ball = document.querySelector('#ball');
+      const text = document.querySelector('#text');
+
+      ball.ondragstart = function () {
+        return false;
+      };
+
+      ball.onpointerdown = log;
+      ball.onpointerup = log;
+      ball.onpointermove = log;
+      ball.onpointercancel = log;
+
+      let lastEventType;
+      let n = 1;
+      function log(event) {
+        if (lastEventType == event.type) {
+          n++;
+          text.value = text.value.replace(/.*\n$/, `${event.type} * ${n}\n`);
+          return;
+        }
+
+        lastEventType = event.type;
+        n = 1;
+        text.value += event.type + '\n';
+        text.scrollTop = 1e9;
+      }
+    </script>
   </body>
 </html>
