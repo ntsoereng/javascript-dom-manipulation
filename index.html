@@ -6,53 +6,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JS DOM</title>
     <style>
-      form fieldset {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        justify-content: space-between;
+      div {
+        margin: 20px;
+        padding: 20px;
       }
     </style>
   </head>
   <body>
     <h2>Forms</h2>
-    <form name="myform" id="form">
-      <fieldset name="userFields">
-        <legend>Login</legend>
-        <input
-          type="text"
-          name="username"
-          id="username"
-          placeholder="Username"
-        />
-        <input type="email" name="email" id="email" placeholder="Email" />
-        <div>
-          <label for="underage">Under 18</label>
-          <input type="radio" name="age" id="under-age" />
-          <label for="age-approp">18+</label>
-          <input type="radio" name="age" id="age-approp" />
-        </div>
-        <textarea
-          name="message"
-          id="message"
-          cols="30"
-          rows="6"
-          placeholder="Message"
-        ></textarea>
-        <input type="submit" value="Send" id="send" />
-      </fieldset>
-    </form>
+    <div style="border: 1px solid green">
+      <select name="cars" id="cars">
+        <option value="Tesla">Tesla</option>
+        <option value="BMW">BMW</option>
+        <option value="Mercedes Benz">Mercedes Benz</option>
+        <option value="Ford">Ford</option>
+        <option value="Renault">Renault</option>
+      </select>
+      <div>
+        <button id="bmw">BMW</button>
+        <button id="ford">FORD</button>
+        <button id="renault">Renault</button>
+      </div>
+    </div>
 
+    <div style="border: 1px solid blue">
+      <select name="music" id="music" multiple>
+        <option value="hiphop" selected>Hip Hop</option>
+        <option value="reggae" selected>Reggae</option>
+        <option value="house">House</option>
+      </select>
+    </div>
     <script>
-      const username = document.querySelector('#username');
-      const email = document.querySelector('#email');
-      const message = document.querySelector('#message');
+      // CARS
+      const cars = document.querySelector('#cars');
+      bmw.onclick = function () {
+        cars.options[1].selected = true;
+      };
+      ford.onclick = function () {
+        cars.selectedIndex = 3;
+      };
+      renault.onclick = function () {
+        cars.value = 'Renault';
+      };
 
-      username.value = 'Ntsoereng';
-      email.value = 'cn.ntsoereng@gmail.com';
-      message.value = 'How much would could a wood chuck chuck...';
-      const age = document.querySelector('#form').elements.age;
-      age[1].checked = true;
+      // MUSIC
+      const music = document.querySelector('#music');
+      const selected = Array.from(music.options)
+        .filter(music => music.selected)
+        .map(music => music.value.toUpperCase());
+      // alert(selected);
+      const option = new Option('Amapiano', 'amapiano', true, true);
+      music.append(option);
     </script>
   </body>
 </html>
