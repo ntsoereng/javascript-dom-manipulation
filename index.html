@@ -6,26 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JS DOM</title>
     <style>
-      li {
-        cursor: pointer;
-      }
-      :focus {
-        outline: 1px dashed cornflowerblue;
+      .focused {
+        outline: 1px solid crimson;
       }
     </style>
   </head>
   <body>
-    <h2>Tab Index</h2>
+    <h2>Focus Delegation</h2>
+    <form id="form">
+      <input type="text" name="name" value="Name" />
+      <input type="text" name="surname" value="Surname" />
+    </form>
 
-    <p>Click the first item and press tab.</p>
+    <script>
+      const form = document.querySelector('#form');
 
-    <ul>
-      <li tabindex="1">One</li>
-      <li tabindex="0">Zero</li>
-      <li tabindex="2">Two</li>
-      <li tabindex="-1">Minus One</li>
-      <li tabindex="3">Three</li>
-    </ul>
-    <script></script>
+      form.addEventListener('focusin', () => form.classList.add('focused'));
+      form.addEventListener('focusout', () => form.classList.remove('focused'));
+    </script>
   </body>
 </html>
