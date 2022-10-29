@@ -5,8 +5,50 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JS DOM</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <script></script>
+    <h2>Edittable Div</h2>
+    <ul>
+      <li>Click div to edit</li>
+      <li>Press <kbd>Enter</kbd> or unfocus to save</li>
+      <li>HTML is allowed, and will be parsed</li>
+    </ul>
+
+    <div id="view" class="view">Text here</div>
+
+    <script>
+      const view = document.querySelector('#view');
+      let area = null;
+
+      view.onclick = function () {
+        editStart();
+      };
+
+      function editStart() {
+        area = document.createElement('textarea');
+        area.className = 'edit';
+        area.value = view.innerHTML;
+
+        area.onkeydown = function (event) {
+          if (event.key === 'Enter') {
+            this.blur();
+          }
+        };
+
+        area.onblur = function () {
+          editEnd();
+        };
+
+        view.replaceWith(area);
+
+        area.focus();
+      }
+
+      function editEnd() {
+        view.innerHTML = area.value;
+        area.replaceWith(view);
+      }
+    </script>
   </body>
 </html>
