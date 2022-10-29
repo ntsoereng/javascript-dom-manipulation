@@ -5,17 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JS DOM</title>
+    <style>
+      form fieldset {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        justify-content: space-between;
+      }
+    </style>
   </head>
   <body>
     <h2>Forms</h2>
     <form name="myform" id="form">
-      <!-- <input type="text" name="one" value="1" />
-      <input type="text" name="two" value="2" />
-
-      <input type="radio" name="age" id="age1" value="10" />
-      <input type="radio" name="age" id="age2" value="20" />
-      <input type="radio" name="age" id="age3" value="30" />
-    -->
       <fieldset name="userFields">
         <legend>Login</legend>
         <input
@@ -24,40 +25,34 @@
           id="username"
           placeholder="Username"
         />
-        <input
-          type="password"
-          name="password"
-          id="password"
-          placeholder="Password"
-        />
-        <input type="submit" value="Login" id="login" />
+        <input type="email" name="email" id="email" placeholder="Email" />
+        <div>
+          <label for="underage">Under 18</label>
+          <input type="radio" name="age" id="under-age" />
+          <label for="age-approp">18+</label>
+          <input type="radio" name="age" id="age-approp" />
+        </div>
+        <textarea
+          name="message"
+          id="message"
+          cols="30"
+          rows="6"
+          placeholder="Message"
+        ></textarea>
+        <input type="submit" value="Send" id="send" />
       </fieldset>
     </form>
 
     <script>
-      // ========================================
-      // FORMS WITH FIELDSETS
-      const form = document.querySelector('#form');
-      // alert(form.elements.username.outerHTML);
+      const username = document.querySelector('#username');
+      const email = document.querySelector('#email');
+      const message = document.querySelector('#message');
 
-      const fieldset = form.elements.userFields;
-      // alert(fieldset.elements.username === form.elements.username);
-      alert(fieldset.form.name);
-
-      // ========================================
-
-      // // Get the form
-      // const form = document.forms.myform;
-
-      // // Get the elements
-      // const textInput = form.elements.one;
-
-      // // Get radio button collection
-      // const radioButtons = form.elements.age;
-
-      // Array.from(radioButtons).forEach(radioButton => alert(radioButton.value));
-
-      // // alert(elem.outerHTML);
+      username.value = 'Ntsoereng';
+      email.value = 'cn.ntsoereng@gmail.com';
+      message.value = 'How much would could a wood chuck chuck...';
+      const age = document.querySelector('#form').elements.age;
+      age[1].checked = true;
     </script>
   </body>
 </html>
