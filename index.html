@@ -6,16 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JS DOM</title>
     <style>
-      .invalid {
-        border-color: crimson;
-      }
-      #error {
-        color: crimson;
-        font-size: 0.8rem;
-      }
-
-      #email {
-        width: 220px;
+      .error {
+        background-color: red;
       }
     </style>
   </head>
@@ -27,28 +19,23 @@
       name="email"
       id="email"
       placeholder="johndoe@example.com"
-      required
     />
-    <button id="submit" type="submit">Subscribe</button>
-    <div id="error"></div>
+    <input type="text" id="username" placeholder="username" />
 
     <script>
       const email = document.querySelector('#email');
-      const error = document.querySelector('#error');
+      const username = document.querySelector('#username');
 
       email.onblur = function () {
         if (!this.value.includes('@')) {
-          this.classList.add('invalid');
-          error.innerHTML = 'Please provide a valid email address!';
+          // Show the error
+          this.classList.add('error');
+          // ...and put the focus back on the email field
+          email.focus();
+        } else {
+          this.classList.remove('error');
         }
       };
-      email.addEventListener('focus', function () {
-        if (this.classList.contains('invalid')) {
-          // remove the "error" indication because the user wants to re-enter email
-          this.classList.remove('invalid');
-          error.innerHTML = '';
-        }
-      });
     </script>
   </body>
 </html>
