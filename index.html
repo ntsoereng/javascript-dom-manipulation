@@ -7,6 +7,57 @@
     <title>JS DOM</title>
   </head>
   <body>
-    <script></script>
+    <h2>Forms</h2>
+    <form name="myform" id="form">
+      <!-- <input type="text" name="one" value="1" />
+      <input type="text" name="two" value="2" />
+
+      <input type="radio" name="age" id="age1" value="10" />
+      <input type="radio" name="age" id="age2" value="20" />
+      <input type="radio" name="age" id="age3" value="30" />
+    -->
+      <fieldset name="userFields">
+        <legend>Login</legend>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          placeholder="Username"
+        />
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Password"
+        />
+        <input type="submit" value="Login" id="login" />
+      </fieldset>
+    </form>
+
+    <script>
+      // ========================================
+      // FORMS WITH FIELDSETS
+      const form = document.querySelector('#form');
+      // alert(form.elements.username.outerHTML);
+
+      const fieldset = form.elements.userFields;
+      // alert(fieldset.elements.username === form.elements.username);
+      alert(fieldset.form.name);
+
+      // ========================================
+
+      // // Get the form
+      // const form = document.forms.myform;
+
+      // // Get the elements
+      // const textInput = form.elements.one;
+
+      // // Get radio button collection
+      // const radioButtons = form.elements.age;
+
+      // Array.from(radioButtons).forEach(radioButton => alert(radioButton.value));
+
+      // // alert(elem.outerHTML);
+    </script>
   </body>
 </html>
