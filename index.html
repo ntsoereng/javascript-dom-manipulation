@@ -7,6 +7,29 @@
     <title>JS DOM</title>
   </head>
   <body>
-    <script></script>
+    <select name="genre" id="genre">
+      <option value="pop">Pop</option>
+      <option value="hiphop" selected>Hip Hop</option>
+      <option value="reggae">Reggae</option>
+      <option value="house">House</option>
+    </select>
+
+    <div id="result"></div>
+
+    <script>
+      const genre = document.querySelector('#genre');
+      const result = document.querySelector('#result');
+
+      genre.onchange = function () {
+        result.innerHTML = genre.options[genre.selectedIndex].value;
+      };
+
+      const option = new Option('Classic', 'classic');
+
+      genre.append(option);
+
+      option.selected = true;
+      alert(genre.value);
+    </script>
   </body>
 </html>
