@@ -6,53 +6,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JS DOM</title>
     <style>
-      form fieldset {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        justify-content: space-between;
+      .invalid {
+        border-color: crimson;
+      }
+      #error {
+        color: crimson;
+        font-size: 0.8rem;
+      }
+
+      #email {
+        width: 220px;
       }
     </style>
   </head>
   <body>
-    <h2>Forms</h2>
-    <form name="myform" id="form">
-      <fieldset name="userFields">
-        <legend>Login</legend>
-        <input
-          type="text"
-          name="username"
-          id="username"
-          placeholder="Username"
-        />
-        <input type="email" name="email" id="email" placeholder="Email" />
-        <div>
-          <label for="underage">Under 18</label>
-          <input type="radio" name="age" id="under-age" />
-          <label for="age-approp">18+</label>
-          <input type="radio" name="age" id="age-approp" />
-        </div>
-        <textarea
-          name="message"
-          id="message"
-          cols="30"
-          rows="6"
-          placeholder="Message"
-        ></textarea>
-        <input type="submit" value="Send" id="send" />
-      </fieldset>
-    </form>
+    <h2>Focus and Blur</h2>
+    <label for="email">Your email address</label>
+    <input
+      type="email"
+      name="email"
+      id="email"
+      placeholder="johndoe@example.com"
+      required
+    />
+    <button id="submit" type="submit">Subscribe</button>
+    <div id="error"></div>
 
     <script>
-      const username = document.querySelector('#username');
       const email = document.querySelector('#email');
-      const message = document.querySelector('#message');
+      const error = document.querySelector('#error');
 
-      username.value = 'Ntsoereng';
-      email.value = 'cn.ntsoereng@gmail.com';
-      message.value = 'How much would could a wood chuck chuck...';
-      const age = document.querySelector('#form').elements.age;
-      age[1].checked = true;
+      email.onblur = function () {
+        if (!this.value.includes('@')) {
+          this.classList.add('invalid');
+          error.innerHTML = 'Please provide a valid email address!';
+        }
+      };
+      email.addEventListener('focus', function () {
+        if (this.classList.contains('invalid')) {
+          // remove the "error" indication because the user wants to re-enter email
+          this.classList.remove('invalid');
+          error.innerHTML = '';
+        }
+      });
     </script>
   </body>
 </html>
