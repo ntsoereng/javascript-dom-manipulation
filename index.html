@@ -27,6 +27,19 @@
       </select>
     </div>
 
-    <script></script>
+    <h3>input event</h3>
+    <div>
+      <input type="text" id="input" /> &nbsp;oninput: &nbsp;<span
+        id="result"
+      ></span>
+    </div>
+
+    <script>
+      const input = document.querySelector('#input');
+      const result = document.querySelector('#result');
+      input.onkeyup = function () {
+        result.innerHTML = input.value;
+      };
+    </script>
   </body>
 </html>
