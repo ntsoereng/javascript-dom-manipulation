@@ -34,11 +34,26 @@
       ></span>
     </div>
 
+    <h3>cut, copy, paste events</h3>
+    <div>
+      <input type="text" id="input_copy" />
+    </div>
+
     <script>
       const input = document.querySelector('#input');
       const result = document.querySelector('#result');
       input.onkeyup = function () {
         result.innerHTML = input.value;
+      };
+
+      const inputCopy = document.querySelector('#input_copy');
+      inputCopy.onpaste = function (event) {
+        alert('paste: ' + event.clipboardData.getData('text/plain'));
+        event.preventDefault();
+      };
+      inputCopy.oncut = inputCopy.oncopy = function (event) {
+        alert(event.type + ': ' + document.getSelection());
+        event.preventDefault();
       };
     </script>
   </body>
