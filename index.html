@@ -5,8 +5,119 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JS DOM</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      td select,
+      td input {
+        width: 150px;
+      }
+      #diagram {
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+      }
+      #diagram td {
+        vertical-align: bottom;
+        text-align: center;
+        padding: 10px;
+      }
+      #diagram div {
+        margin: auto;
+      }
+    </style>
   </head>
   <body>
-    <script></script>
+    <h2>Deposit Calculator</h2>
+
+    <form name="calculator">
+      <table>
+        <tr>
+          <td>Initial Deposit</td>
+          <td>
+            <input type="number" name="money" min="0" value="10000" required />
+          </td>
+        </tr>
+        <tr>
+          <td>How many months?</td>
+          <td>
+            <select name="months" id="months">
+              <option value="3">3 (minimum)</option>
+              <option value="6">6 (half-year)</option>
+              <option value="12" selected>12 (1 year)</option>
+              <option value="18">18 (1.5 years)</option>
+              <option value="24">24 (2 years)</option>
+              <option value="30">30 (2.5 years)</option>
+              <option value="36">36 (3 years)</option>
+              <option value="60">60 (5 years)</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Interest per annum?</td>
+          <td>
+            <input type="number" name="interest" value="5" min="0" required />
+          </td>
+        </tr>
+      </table>
+    </form>
+
+    <table id="diagram">
+      <tr>
+        <th>Before:</th>
+        <th>After:</th>
+      </tr>
+      <tr>
+        <th id="money-before"></th>
+        <th id="money-after"></th>
+      </tr>
+      <td>
+        <div
+          style="background: crimson; width: 40px; height: 100px"
+          id="height-before"
+        ></div>
+      </td>
+      <td>
+        <div
+          style="background: green; width: 40px; height: 0"
+          id="height-after"
+        ></div>
+      </td>
+    </table>
+
+    <script>
+      const form = document.forms.calculator;
+      form.money.oninput = calculate;
+      form.months.onchange = calculate;
+      form.interest.oninput = calculate;
+
+      function calculate() {
+        const initial = +form.money.value;
+        if (!initial) {
+          return;
+        }
+
+        const interest = form.interest.value * 0.01;
+        if (!interest) {
+          return;
+        }
+
+        const years = form.months.value / 12;
+        if (!years) {
+          return;
+        }
+
+        const result = Math.round(initial * (1 + interest) ** years);
+
+        const height = (result / form.money.value) * 100 + 'px';
+
+        document.getElementById('height-after').style.height = height;
+        document.getElementById('money-before').innerHTML = form.money.value;
+        document.getElementById('money-after').innerHTML = result;
+      }
+      calculate();
+    </script>
   </body>
 </html>
