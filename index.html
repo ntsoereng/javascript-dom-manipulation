@@ -7,6 +7,17 @@
     <title>JS DOM</title>
   </head>
   <body>
-    <script></script>
+    <h3>Manual submit</h3>
+
+    <script>
+      const form = document.createElement('form');
+      form.action = 'https://google.com/search';
+      form.method = 'GET';
+      form.innerHTML = '<input name="q" value="ukraine">';
+
+      // form must be in the document to submit it
+      document.body.append(form);
+      form.submit();
+    </script>
   </body>
 </html>
