@@ -5,8 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JS DOM</title>
+    <style>
+      div {
+        margin-bottom: 20px;
+      }
+    </style>
   </head>
   <body>
+    <h3>change event</h3>
+    <div>
+      <input type="text" onchange="alert(this.value)" />
+      <input type="button" value="Click" />
+    </div>
+
+    <div>
+      <select name="select" id="select" onchange="alert(this.value)">
+        <option value="">&dash;Select something&dash;</option>
+        <option value="option 1">Option 1</option>
+        <option value="option 2">Option 2</option>
+        <option value="Option 3">Option 3</option>
+      </select>
+    </div>
+
     <script></script>
   </body>
 </html>
