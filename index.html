@@ -5,8 +5,69 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JS DOM</title>
+
+    <style>
+      #mouse {
+        display: inline-block;
+        cursor: pointer;
+        margin: 0;
+      }
+
+      #mouse:focus {
+        outline: 1px dashed #555;
+      }
+    </style>
   </head>
   <body>
-    <script></script>
+    <h2>Keyboard-driven mouse</h2>
+    <p>Click on the mouse and move it with arrow keys.</p>
+
+    <pre id="mouse">
+      _   _
+     (q\_/p)
+      /. .\
+     =\_t_/=   __
+      /   \   (
+     ((   ))   )
+     /\) (/\  /
+     \  Y  /-'
+      nn^nn
+     </pre
+    >
+
+    <script>
+      const mouse = document.querySelector('#mouse');
+      mouse.tabIndex = 0;
+
+      mouse.onclick = function () {
+        this.style.left = this.getBoundingClientRect().left + 'px';
+        this.style.top = this.getBoundingClientRect().top + 'px';
+        this.style.position = 'fixed';
+      };
+
+      mouse.onkeydown = function (event) {
+        switch (event.key) {
+          case 'ArrowLeft':
+            this.style.left =
+              parseInt(this.style.left) - this.offsetWidth + 'px';
+            return false;
+
+          case 'ArrowUp':
+            this.style.top =
+              parseInt(this.style.top) - this.offsetHeight + 'px';
+            return false;
+
+          case 'ArrowRight':
+            this.style.left =
+              parseInt(this.style.left) + this.offsetWidth + 'px';
+            return false;
+
+          case 'ArrowDown':
+            this.style.top =
+              parseInt(this.style.top) + this.offsetHeight + 'px';
+            return false;
+        }
+      };
+    </script>
   </body>
 </html>
