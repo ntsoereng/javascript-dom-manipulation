@@ -5,20 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JS DOM</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <h2>Document and Resource Loading</h2>
+    <h3>DOMContentLoaded</h3>
 
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        alert('DOM ready');
-      });
-    </script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.3.0/lodash.js"></script>
-
-    <script>
-      alert('Library loaded, inline script executed.');
+      // This script doesn't execute until the stylesheet is loaded
+      alert(getComputedStyle(document.body).marginTop);
+      alert(5);
     </script>
   </body>
 </html>
