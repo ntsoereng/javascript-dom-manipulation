@@ -10,14 +10,14 @@
     <h2>Document and Resource Loading</h2>
     <h3>DOMContentLoaded</h3>
     <h3>load</h3>
-
+    <h3>unload</h3>
+    <h3>beforeunload</h3>
+    <input type="text" />
+    <a href="google.com">google</a>
     <script>
-      window.onload = function () {
-        alert('Page loaded');
-        alert(`Image size: ${img.offsetWidth}x${img.offsetHeight}`);
+      window.onbeforeunload = function (event) {
+        return false;
       };
     </script>
-
-    <img id="img" src="https://en.js.cx/clipart/train.gif?speed=1&cache=0" />
   </body>
 </html>
