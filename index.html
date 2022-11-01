@@ -5,16 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JS DOM</title>
-    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <h2>Document and Resource Loading</h2>
     <h3>DOMContentLoaded</h3>
+    <h3>load</h3>
 
     <script>
-      // This script doesn't execute until the stylesheet is loaded
-      alert(getComputedStyle(document.body).marginTop);
-      alert(5);
+      window.onload = function () {
+        alert('Page loaded');
+        alert(`Image size: ${img.offsetWidth}x${img.offsetHeight}`);
+      };
     </script>
+
+    <img id="img" src="https://en.js.cx/clipart/train.gif?speed=1&cache=0" />
   </body>
 </html>
