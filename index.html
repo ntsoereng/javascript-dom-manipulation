@@ -7,6 +7,19 @@
     <title>JS DOM</title>
   </head>
   <body>
-    <script></script>
+    <h2>async and defer</h2>
+    <p>...content before the long script</p>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        alert('DOM ready after defer');
+      });
+    </script>
+
+    <script
+      defer
+      src="https://javascript.info/article/script-async-defer/long.js?speed=1"
+    ></script>
+    <p>...content coming after script</p>
+    <!-- <script></script> -->
   </body>
 </html>
