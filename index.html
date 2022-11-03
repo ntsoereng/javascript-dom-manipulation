@@ -7,6 +7,22 @@
     <title>JS DOM</title>
   </head>
   <body>
-    <script></script>
+    <h2>onload and onerror</h2>
+
+    <script>
+      const script = document.createElement('script');
+
+      // Load tthe script
+      script.src = 'https://example.com/404.js';
+      document.head.append(script);
+
+      script.onload = function () {
+        alert(_.VERSION);
+      };
+
+      script.onerror = function () {
+        alert('Error loading: ' + this.src);
+      };
+    </script>
   </body>
 </html>
