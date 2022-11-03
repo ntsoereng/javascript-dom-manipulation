@@ -9,16 +9,22 @@
   <body>
     <h2>async and defer</h2>
     <p>...content before the long script</p>
+
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        alert('DOM ready after defer');
-      });
+      document.addEventListener('DOMContentLoaded', () =>
+        alert('DOM e se le sharp!')
+      );
     </script>
 
     <script
-      defer
-      src="https://javascript.info/article/script-async-defer/long.js?speed=1"
+      async
+      src="https://javascript.info/article/script-async-defer/long.js"
     ></script>
+    <script
+      async
+      src="https://javascript.info/article/script-async-defer/small.js"
+    ></script>
+
     <p>...content coming after script</p>
     <!-- <script></script> -->
   </body>
